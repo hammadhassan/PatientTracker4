@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import Details from "./Details";
 import PatientForm from "./Form";
-import NavBar from "./NavBar";
 import firebase from "firebase";
 import Home from "./Home";
-import Search from "./search1"
+import SearchByName from "./SearchByName";
+import SearchByDate from "./SearchByDate";
+import SearchScreen from "./SearchScreen";
 
 class Main extends Component {
   componentWillMount(){
@@ -41,12 +42,13 @@ class Main extends Component {
 
 const AppHome = TabNavigator({
   Home: {screen: Main},
-  List: {screen: Search},
-  Search: { 
+  Patients: {screen: Details},
+  AddPatients: {screen: PatientForm},
+  searchscreen: { 
     screen: StackNavigator({
-      Patients : { screen: SearchPatient },
-      AddPatients: {screen: PatientForm},
-      Details: {screen: Details},
+      Search: {screen: SearchScreen},
+      Searchbyname : { screen: SearchByName },
+      Searchbydate: {screen: SearchByDate},
     }),
    }
 });

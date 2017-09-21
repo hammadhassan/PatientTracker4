@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, FlatList, Picker, ScrollView, AsyncStorage } from 'react-native';
+import { StyleSheet, View, TextInput, FlatList, Picker, ScrollView, AsyncStorage } from 'react-native';
 import firebase from "firebase";
-import { FormLabel, FormInput, Button } from 'react-native-elements'
+import { FormLabel, FormInput } from 'react-native-elements'
+import { Container, Content, Text, Button } from 'native-base';
 
 export default class PatientForm extends Component {
   static navigationOptions = {
@@ -83,7 +84,7 @@ componentWillMount() {
                     onChangeText={(text) => { this.setState({ problem: text }) }}
                     placeholder="Patient Problem"
                     />
-            <Text>Gender</Text>
+            <FormLabel>Gender</FormLabel>
             <Picker 
             selectedValue={this.state.gender}
             onValueChange={(text) => this.onGenderSelect(text)}
@@ -98,7 +99,7 @@ componentWillMount() {
                     placeholder="Doctor Name" 
                     onChangeText={(text) => { this.setState({ doc: text }) }}
                     />
-            <Text>Day of Appointment</Text>
+            <FormLabel>Day of Appointment</FormLabel>
             <Picker
             selectedValue={this.state.day}
             onValueChange={(text) => this.onDaySelect(text)}
@@ -113,25 +114,23 @@ componentWillMount() {
               <Picker.Item label="Sunday" value="Sunday" />
             </Picker>
             
-            <Button
+            <Container>
+          <Content>
+            <Button primary
             onPress={this.addPatients.bind(this)}
-            title="Add Patients"
-            raised={true}
-            backgroundColor= "#03A9F4"
-            fontSize={24}
-            borderRadius= {5}
-            fontWeight="bold"
-            />
+            style={styles.button}
+            ><Text> Add Patients </Text></Button>
+          </Content>
+      </Container>
           </ScrollView>
       </View>
     );
   }
 }
 
-// var styles = StyleSheet.create({
-//   Button: {
-//     margin: 50,
-//     width: 50
-//   }
-// <Button title="Add Patients" onPress={this.addPatients.bind(this)} style={styles.Button}/>
-// })
+var styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+    justifyContent: "center"
+  }
+})

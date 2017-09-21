@@ -7,7 +7,7 @@ export default class Home extends Component {
   render() {
     return (
         <View>
-            <Text style={styles.home}>Welcome to the App</Text>
+            <Text style={styles.home}>Welcome to the Patient App</Text>
             <Button onPress={this.props.Add} title="Add Patients"/>
             <Text></Text>
             <Button style={styles.btn} onPress={this.props.View} title="View Patients"/>

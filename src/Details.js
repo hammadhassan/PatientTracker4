@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList, Dimensions} from 'react-native';
+import { StyleSheet, View, ScrollView, FlatList, Dimensions} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import firebase from "firebase";
-import { List, ListItem } from 'react-native-elements';
+// import { List, ListItem } from 'react-native-elements';
+import { Container, Header, Content, List, ListItem, Text, Separator , Item, Input, Button } from 'native-base';
 
 export default class Details extends Component {
   constructor(props) {
@@ -29,27 +30,41 @@ PatientsData() {
   });
 };
 
-componentWillMount() {
+componentDidMount() {
   this.PatientsData();
     console.disableYellowBox = true
 };
 
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView>
+        <ScrollView style={styles.container}>
+          <Container style={styles.container}>
+          <Content style={styles.container}>
           {this.state.Data.map((value, i) => {
-            return <View style={styles.pat} key={i}>
+            return <List style={styles.list} key={i}>
+              <ListItem>
               <Text style={styles.text}>Name: {value.Patient.name}</Text>
+              </ListItem>
+              <ListItem>
               <Text style={styles.text}>Problem: {value.Patient.problem}</Text>
+              </ListItem>
+              <ListItem>
               <Text style={styles.text}>Date: {value.Patient.date}</Text>
+              </ListItem>
+              <ListItem>
               <Text style={styles.text}>Gender: {value.Patient.gender}</Text>
+              </ListItem>
+              <ListItem>
               <Text style={styles.text}>Doctor: {value.Patient.doc}</Text>
+              </ListItem>
+              <ListItem>
               <Text style={styles.text}>Day of Appointment: {value.Patient.day}</Text>
-            </View>
+              </ListItem>
+            </List>
           })}
+          </Content>
+          </Container>
           </ScrollView>
-      </View>
       );
     }
   }
@@ -58,21 +73,18 @@ const { height, width } = Dimensions.get('window') ;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  backgroundColor: "white"
   },
-  pat: {
-    marginTop: 10,
-    // width: width - 38 ,
-    // height: height - 50 ,
-    backgroundColor: "#03A9F4",
-    // flexDirection: horizontal
+  list: {
+    borderWidth: 1
   },
   text: {
-    color: "white",
-    fontWeight: "bold",
-    fontSize: 18
+    marginTop :20,
+    marginLeft :20,
+    marginRight: 20
   }
 })
 
