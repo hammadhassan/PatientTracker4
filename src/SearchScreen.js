@@ -5,14 +5,17 @@ import { StackNavigator } from 'react-navigation';
 export default class SearchScreen extends Component {
 static navigationOptions = {
         title: "Search",
+        header: null
     }
   render() {
     return (
         <View style={styles.container}>
-            <Text style={styles.search}>Search By Name or Search By Date</Text>
+            <Text style={styles.search}>Search By Name</Text>
             <Button onPress={() => this.props.navigation.navigate("Searchbyname")} title="Search By Name"/>
-            <Text></Text>
+            <Text style={styles.search}>Search By Date</Text>
             <Button style={styles.btn} onPress={() => this.props.navigation.navigate("Searchbydate")} title="Search By Date"/>
+            <Text style={styles.search}>Search By Doctor </Text>
+            <Button style={styles.btn} onPress={() => this.props.navigation.navigate("Searchbydoctor")} title="Search By Doctor"/>
         </View>
     );
   }

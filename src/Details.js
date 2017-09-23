@@ -43,7 +43,7 @@ componentDidMount() {
           {this.state.Data.map((value, i) => {
             return <List style={styles.list} key={i}>
               <ListItem>
-              <Text style={styles.text}>Name: {value.Patient.name}</Text>
+              <Text style={styles.text}>Patient Name: {value.Patient.name}</Text>
               </ListItem>
               <ListItem>
               <Text style={styles.text}>Problem: {value.Patient.problem}</Text>
@@ -55,7 +55,7 @@ componentDidMount() {
               <Text style={styles.text}>Gender: {value.Patient.gender}</Text>
               </ListItem>
               <ListItem>
-              <Text style={styles.text}>Doctor: {value.Patient.doc}</Text>
+              <Text style={styles.text}>Doctor: {value.Patient.doctor}</Text>
               </ListItem>
               <ListItem>
               <Text style={styles.text}>Day of Appointment: {value.Patient.day}</Text>

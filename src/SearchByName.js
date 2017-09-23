@@ -52,8 +52,11 @@ class SearchByName extends Component {
           <Item bordered>
             <Input placeholder='Enter Name' 
                    onChangeText={(text) => {
-                    this.setState({ name: text })
+                    this.setState({
+                      name: text
+                    })
                 }}
+                // toLowerCase()
             />
           </Item>
               <Button 

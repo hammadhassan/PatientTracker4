@@ -8,6 +8,7 @@ import Home from "./Home";
 import SearchByName from "./SearchByName";
 import SearchByDate from "./SearchByDate";
 import SearchScreen from "./SearchScreen";
+import SearchByDoc from "./SearchByDoc";
 
 class Main extends Component {
   componentWillMount(){
@@ -33,7 +34,7 @@ class Main extends Component {
       {/* <StatusBar hidden={true}/> */}
           <Home
           Add={() => navigate("AddPatients")}
-          View={() => navigate("Details")}
+          View={() => navigate("Patients")}
           />
       </View>
     );
@@ -49,6 +50,7 @@ const AppHome = TabNavigator({
       Search: {screen: SearchScreen},
       Searchbyname : { screen: SearchByName },
       Searchbydate: {screen: SearchByDate},
+      Searchbydoctor: {screen: SearchByDoc},
     }),
    }
 });

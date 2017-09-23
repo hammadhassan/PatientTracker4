@@ -3,24 +3,24 @@ import { View,  TextInput, StyleSheet } from 'react-native';
 import * as firebase from "firebase";
 import { Container, Header, Content, List, ListItem, Text, Separator , Item, Input, Button } from 'native-base';
 
-class SearchByDate extends Component {
+class SearchByDoc extends Component {
 
     componentWillMount() {
         console.disableYellowBox = true
     }
     static navigationOptions = {
-        title: "Search By Date",
+        title: "Search By Doctor",
     }
     constructor() {
         super()
         this.state = {
             data: [],
-            date: ""
+            doctor: ""
         }
-        this.getDataByDate = this.getDataByDate.bind(this);
+        this.getDataByDoc = this.getDataByDoc.bind(this);
     }
 
-	getDataByDate() {
+	getDataByDoc() {
             var array = []
             var foundedData = []
             let dataBase = firebase.database().ref().child("Patients")
@@ -30,7 +30,7 @@ class SearchByDate extends Component {
                     array.push(key[a].Patient)
                 }
                 array.map((Patient) => {
-                    if (Patient.date === this.state.date) {
+                    if (Patient.doctor === this.state.doctor) {
                         foundedData.push(Patient)
                 //   this.setState({
                 //     data: foundedData
@@ -51,44 +51,44 @@ class SearchByDate extends Component {
           <Container style={styles.container}>
           <Content style={styles.container}>
           <Item>
-            <Input placeholder='Enter Date : 11/9/2017' 
+            <Input placeholder='Doctor Name' 
                   onChangeText={(text) => {
-                    this.setState({ date: text })
+                    this.setState({ doctor: text })
                 }}
             />
           </Item>
               <Button 
               style={styles.pList}
-               onPress={this.getDataByDate}>
+               onPress={this.getDataByDoc}>
                <Text>Search Patient</Text>
              </Button>
                 {this.state.data.map((data, index) => {
                     return    (    
             <List key={index} style={styles.list}>
-            <ListItem bordered>
-                  <Text style={styles.pList}> Date: {data.date}</Text>
-                </ListItem>
                 <ListItem  bordered>
-                  <Text style={styles.pList} >Name : {data.name}</Text>
+                <ListItem bordered>
+                  <Text style={styles.pList}> Doctor : {data.doctor}</Text>
+                </ListItem>
+                  <Text style={styles.pList} >Patient Name : {data.name}</Text>
                 </ListItem>
                 <ListItem bordered>
                   <Text style={styles.pList}>Problem : {data.problem}</Text>
                 </ListItem>
                 <ListItem bordered>
+                  <Text style={styles.pList}> Date: {data.date}</Text>
+                </ListItem>
+                <ListItem bordered>
                   <Text style={styles.pList}>Gender : {data.gender}</Text>
                 </ListItem >
-      		   <ListItem bordered>
-                  <Text style={styles.pList}> Doctor : {data.doc}</Text>
-                </ListItem>
            </List>
-                    )
+                )
                 })}
                 </Content>
             </Container>
         )
     }
 }
-export default SearchByDate;
+export default SearchByDoc;
 
 const styles = StyleSheet.create({
   pList: {

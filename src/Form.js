@@ -37,7 +37,7 @@ export default class PatientForm extends Component {
         problem: this.state.problem,
         gender: this.state.gender,
         date: fullDate,
-        doc: this.state.doc,
+        doctor: this.state.doctor,
         day: this.state.day,
       }
     }
@@ -95,9 +95,9 @@ componentWillMount() {
             </Picker>
                   <FormLabel>Doctor</FormLabel>
                     <FormInput 
-                    value={this.state.doc} 
+                    value={this.state.doctor} 
                     placeholder="Doctor Name" 
-                    onChangeText={(text) => { this.setState({ doc: text }) }}
+                    onChangeText={(text) => { this.setState({ doctor: text }) }}
                     />
             <FormLabel>Day of Appointment</FormLabel>
             <Picker
