@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View,  TextInput, StyleSheet } from 'react-native';
+import { View,  TextInput, StyleSheet, ActivityIndicator } from 'react-native';
 import * as firebase from "firebase";
 import { Container, Header, Content, List, ListItem, Text, Separator , Item, Input, Button } from 'native-base';
 
@@ -45,6 +45,19 @@ class SearchByDate extends Component {
                 })
             })
     }
+
+    // renderButtonAndLoader() {
+    //     if (this.state.isLoading) {
+    //         return <ActivityIndicator />
+    //     }
+    //     return (
+    //         <Button 
+    //           style={styles.pList}
+    //            onPress={this.getDataByDate}>
+    //            <Text>Search Patient</Text>
+    //          </Button>
+    //     )
+    // }
 
     render() {
         return (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View,  TextInput, StyleSheet } from 'react-native';
+import { View,  TextInput, StyleSheet, ActivityIndicator } from 'react-native';
 import * as firebase from "firebase";
 import { Container, Header, Content, List, ListItem, Text, Separator , Item, Input, Button } from 'native-base';
 
@@ -15,7 +15,8 @@ class SearchByDoc extends Component {
         super()
         this.state = {
             data: [],
-            doctor: ""
+            doctor: "",
+            isLoading: false
         }
         this.getDataByDoc = this.getDataByDoc.bind(this);
     }
@@ -46,18 +47,32 @@ class SearchByDoc extends Component {
             })
     }
 
+    // renderButtonAndLoader() {
+    //     if (this.state.isLoading) {
+    //         return <ActivityIndicator />
+    //     }
+    //     return (
+    //         <Button 
+    //           style={styles.pList}
+    //            onPress={this.getDataByDoc}>
+    //            <Text>Search Patient</Text>
+    //          </Button>
+    //     )
+    // }
+
     render() {
         return (
           <Container style={styles.container}>
           <Content style={styles.container}>
           <Item>
             <Input placeholder='Doctor Name' 
+                   autoCapitalize = 'none'
                   onChangeText={(text) => {
                     this.setState({ doctor: text })
                 }}
             />
           </Item>
-              <Button 
+            <Button 
               style={styles.pList}
                onPress={this.getDataByDoc}>
                <Text>Search Patient</Text>
@@ -65,14 +80,14 @@ class SearchByDoc extends Component {
                 {this.state.data.map((data, index) => {
                     return    (    
             <List key={index} style={styles.list}>
+                <ListItem bordered>
+                  <Text style={styles.pList}> Doctor : {data.doctor.toLowerCase()}</Text>
+                </ListItem>
                 <ListItem  bordered>
-                <ListItem bordered>
-                  <Text style={styles.pList}> Doctor : {data.doctor}</Text>
-                </ListItem>
-                  <Text style={styles.pList} >Patient Name : {data.name}</Text>
+                  <Text style={styles.pList} >Patient Name : {data.name.toLowerCase()}</Text>
                 </ListItem>
                 <ListItem bordered>
-                  <Text style={styles.pList}>Problem : {data.problem}</Text>
+                  <Text style={styles.pList}>Problem : {data.problem.toLowerCase()}</Text>
                 </ListItem>
                 <ListItem bordered>
                   <Text style={styles.pList}> Date: {data.date}</Text>

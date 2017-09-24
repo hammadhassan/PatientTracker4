@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, TextInput, FlatList, Picker, ScrollView, AsyncStorage } from 'react-native';
+import { StyleSheet, View, TextInput, FlatList, Picker, ScrollView, AsyncStorage, ActivityIndicator } from 'react-native';
 import firebase from "firebase";
 import { FormLabel, FormInput } from 'react-native-elements'
 import { Container, Content, Text, Button } from 'native-base';
+import { Spinner } from './common';
 
 export default class PatientForm extends Component {
   static navigationOptions = {
@@ -16,7 +17,8 @@ export default class PatientForm extends Component {
       problem: "",
       gender: "",
       doctor:"",
-      day: ""
+      day: "",
+      isLoading: false
 };
     this.onGenderSelect = this.onGenderSelect.bind(this);
     this.onDaySelect = this.onDaySelect.bind(this);
@@ -31,7 +33,8 @@ export default class PatientForm extends Component {
     var month = date.getMonth()+1;
     var year = date.getFullYear();
     var fullDate = day + '/' + month + '/' + year;
-    var PatientsData = {
+    // if (this.state !== null ) {
+      var PatientsData = {
       Patient: {
         name: this.state.name, 
         problem: this.state.problem,
@@ -53,6 +56,9 @@ export default class PatientForm extends Component {
       day: ""
     })
     this.props.navigation.navigate('Details');
+  // } else {
+  //     alert("Please enter data")
+  //   }
   }
 
   onGenderSelect = (gender) => {
@@ -65,9 +71,22 @@ export default class PatientForm extends Component {
       day: day
     });
   }
-componentWillMount() {
+
+componentDidMount() {
         console.disableYellowBox = true
     }
+    renderButton() {
+      if (this.state.isLoading) {
+            return <Spinner />
+        }
+        return (
+            <Button primary
+            onPress={this.addPatients.bind(this)}
+            style={styles.button}
+            ><Text> Add Patients </Text></Button>
+        )
+    }
+
   render() {
     return (
       <View>

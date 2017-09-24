@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View,  TextInput, StyleSheet } from 'react-native';
+import { View,  TextInput, StyleSheet, ActivityIndicator } from 'react-native';
 import * as firebase from "firebase";
 import { Container, Header, Content, List, ListItem, Text, Separator , Item, Input, Button } from 'native-base';
 
@@ -45,12 +45,26 @@ class SearchByName extends Component {
             })
     }
 
+// renderButtonAndLoader() {
+    //     if (this.state.isLoading) {
+    //         return <ActivityIndicator />
+    //     }
+    //     return (
+    //         <Button 
+    //           style={styles.pList}
+    //            onPress={this.getDataByName}>
+    //            <Text>Search Patient</Text>
+    //          </Button>
+    //     )
+    // }
+
     render() {
         return (
             <Container style={styles.container}>
             <Content style={styles.container}>
           <Item bordered>
-            <Input placeholder='Enter Name' 
+            <Input placeholder='Enter Name'
+                   autoCapitalize = 'none'
                    onChangeText={(text) => {
                     this.setState({
                       name: text
@@ -68,10 +82,10 @@ class SearchByName extends Component {
                     return    (
             <List key={index} style={styles.list}>
                 <ListItem  bordered>
-                  <Text style={styles.pList} >Name : {data.name}</Text>
+                  <Text style={styles.pList} >Name : {data.name.toLowerCase()}</Text>
                 </ListItem>
                 <ListItem >
-                  <Text style={styles.pList}>Problem : {data.problem}</Text>
+                  <Text style={styles.pList}>Problem : {data.problem.toLowerCase()}</Text>
                 </ListItem>
                 <ListItem>
                   <Text style={styles.pList}> Date: {data.date}</Text>
@@ -80,7 +94,7 @@ class SearchByName extends Component {
                   <Text style={styles.pList}>Gender : {data.gender}</Text>
                 </ListItem>
       		   <ListItem>
-                  <Text style={styles.pList}> Doctor : {data.doc}</Text>
+                  <Text style={styles.pList}> Doctor : {data.doctor}</Text>
                 </ListItem>
            </List>
                     )
